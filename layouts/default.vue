@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-orange-200" style="height: 100%">
-    <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5  dark:bg-gray-900">
+  <div>
+    <nav class="bg-gray-400 border-gray-200 px-2 sm:px-4 py-2.5  dark:bg-gray-900">
       <div class="container flex flex-wrap justify-between items-center mx-auto">
         <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
@@ -21,7 +21,8 @@
         </div>
       </div>
     </nav>
-    <main>
+    <main class="mt-14">
+
       <slot />
     </main>
   </div>
@@ -30,10 +31,12 @@
 <style>
 html,body, #__nuxt, #__layout{
   height:100%!important;
-  width: 100%!important;
 }
 
+/*main > div {*/
+/*  margin-left: 45%;*/
+/*}*/
 main > div {
-  margin-left: 45%;
+  justify-content: center;
 }
 </style>

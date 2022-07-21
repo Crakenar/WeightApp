@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 400px; height: 300px" v-if="store.getWeights.length !== 0">
+  <div style="width: 700px; height: 300px" v-if="store.getWeights.length !== 0">
     <canvas id="myChart" ref="chartWeight" height="10" width="10"></canvas>
   </div>
   <div v-else>
@@ -34,3 +34,9 @@ onMounted(() => {
    new Chart(chartWeight.value, config);
 })
 </script>
+
+<style scoped>
+div {
+  justify-content: center;
+}
+</style>

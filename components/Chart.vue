@@ -1,76 +1,36 @@
 <template>
-  <canvas id="myChart" ref="weightChartElement" height="400" width="400"></canvas>
+  <div style="width: 400px; height: 300px" v-if="store.getWeights.length !== 0">
+    <canvas id="myChart" ref="chartWeight" height="10" width="10"></canvas>
+  </div>
+  <div v-else>
+    Add data
+  </div>
 </template>
 <script setup>
 import Chart from "chart.js/auto"
 import {onMounted, ref} from 'vue'
+import {useStore} from "../store";
+const chartWeight = ref(null);
+
+const store = useStore()
+const weights = store.getDateWeights;
+const labels = weights.map((w) => w.date.toString())
 const data = {
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-    label: '# of Votes',
-    data: [12, 19, 3, 5, 2, 3],
-    backgroundColor: [
-      'rgba(255, 99, 132, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(255, 206, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(255, 159, 64, 0.2)'
-    ],
-    borderColor: [
-      'rgba(255, 99, 132, 1)',
-      'rgba(54, 162, 235, 1)',
-      'rgba(255, 206, 86, 1)',
-      'rgba(75, 192, 192, 1)',
-      'rgba(153, 102, 255, 1)',
-      'rgba(255, 159, 64, 1)'
-    ],
-    borderWidth: 1
+  labels: labels,
+  datasets: [{
+    label: 'Your weight',
+    data: weights.map((w) => w.weight),
+    fill: false,
+    borderColor: 'rgb(75, 192, 192)',
+    tension: 0.1
   }]
 };
-const options = {
-  scales: {
-    y: {
-      beginAtZero: true
-    }
-  }
-}
 
+const config = {
+  type: 'line',
+  data: data,
+};
 onMounted(() => {
-  const ctx = document.getElementById('myChart')
-  const myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
+   new Chart(chartWeight.value, config);
 })
 </script>

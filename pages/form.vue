@@ -1,5 +1,5 @@
 <template>
-    <div class="form">
+    <div class="justify-center ">
       <div class="w-full max-w-xs">
         <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" @submit.prevent="addWeight">
           <div class="mb-4">
@@ -29,8 +29,5 @@ function addWeight() {
 </script>
 
 <style scoped>
-.form {
-  margin-left: 40%;
-  margin-top: 15%;
-}
+
 </style>

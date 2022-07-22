@@ -1,9 +1,6 @@
 import {defineStore} from "pinia";
+import {weightInterface} from "~/types/IWeight";
 
-interface weightInterface {
-        weight: number;
-        date: string;
-}
 
 export const useStore = defineStore({
     id: 'store',
@@ -28,6 +25,10 @@ export const useStore = defineStore({
         addWeight(weight: number, date: string): void {
             const newWeight: weightInterface = { weight : weight,date: date};
             this.weights.push(newWeight);
+        },
+
+        setWeights(weights:  weightInterface[]): void {
+            this.weights = weights;
         }
     }
 });
